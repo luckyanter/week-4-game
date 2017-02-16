@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>crystals</title>
+  
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+  <h1>   Mathch this number to win:  <span id="match"></span>  </h1>
+
+  <div id="crystals"></div>
+
+  <style type="text/css">
+    .button{
+     font-size: 10px;
+      background-color: blue;
+      margin: 30px;
+      padding: 10px;
+    }
+  </style>
+
+  <script type="text/javascript">
+  
+  var computerChoice = Math.floor(Math.random() * 50) + 20;
+  var userChoice = 0;
+  var list = [9, 7, 5, 3];
+  var colors = ["green", "blue", "red", "yellow"];
+  var names = ["crystal1", "crystal2", "crystal3", "crystal4"];
+  
+
+  $("#match").html(computerChoice);
+
+
+  for (var i = 0; i < list.length; i++) {
+    var Crystal = $("<button>");
+    Crystal.addClass("button");
+    Crystal.attr("data", list[i]);
+    Crystal.attr("datanames", names[i]).text(names[i]);
+    $(Crystal).css("background-color", colors[i]);
+
+    $("#crystals").append(Crystal);
+  }
+
+
+
+
+  $(".button").on("click", function() {
+
+    
+    var Value = ($(this).attr("data"));
+    console.log(this);
+    Value = parseInt(Value);
+    userChoice += Value;
+    alert("score: " + userChoice);
+
+    if (userChoice === computerChoice) {
+      alert("You win! refresh the screento play again");
+    }
+
+    else if (userChoice >= computerChoice) {
+      alert("You lose! refresh the screento play again");
+    }
+
+  });
+
+  </script>
+</body>
+</html>
